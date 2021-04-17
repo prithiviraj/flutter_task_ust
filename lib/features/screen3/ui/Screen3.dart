@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
+import 'package:flutter_app/features/webview/ui/WebViewScreen.dart';
 
 class Screen3 extends StatefulWidget {
   @override
@@ -126,6 +127,13 @@ class Screen3State extends State<Screen3> {
 
   Widget getRow(int i) {
     return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => WebViewScreen(),
+            ));
+      },
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
