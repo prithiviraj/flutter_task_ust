@@ -2,9 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
-import 'CarouselView.dart';
-import 'Screen2.dart';
-import 'Screen3.dart';
+import '../../../commonHelper/CarouselView.dart';
+import '../../screen2/ui/Screen2.dart';
+import '../../screen3/ui/Screen3.dart';
 
 class Screen1 extends StatefulWidget {
   @override
@@ -14,6 +14,14 @@ class Screen1 extends StatefulWidget {
 }
 
 class Screen1State extends State<Screen1> {
+  CarouselView carouselView;
+
+  @override
+  void initState() {
+    super.initState();
+    carouselView = CarouselView(this.carouselIndexCallback);
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,7 +47,7 @@ class Screen1State extends State<Screen1> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   view1(),
-                  CarouselView().setCarouselView(),
+                  carouselView.setCarouselView(),
                   view3(context),
                 ],
               ),
@@ -198,5 +206,11 @@ class Screen1State extends State<Screen1> {
         SizedBox(height: 20)
       ],
     );
+  }
+
+  void carouselIndexCallback(int index) {
+    setState(() {
+      carouselView.setCarouselView();
+    });
   }
 }

@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 
 class CarouselView {
+  Function carouselIndexCallback;
+  final CarouselController _controller = CarouselController();
+  int _current = 0;
+
+  CarouselView(this.carouselIndexCallback);
+
   Widget setCarouselView() {
     return Container(
       child: Column(
@@ -22,12 +28,7 @@ class CarouselView {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Container(
-                  width: 20,
-                  height: 20,
-                  margin: EdgeInsets.only(right: 20),
-                  child: Image.asset("assets/images/pagination.png",
-                      fit: BoxFit.fitWidth)),
+              setIndicatorView(),
             ],
           ),
           SizedBox(height: 60),
@@ -38,13 +39,12 @@ class CarouselView {
               primary: false,
               children: [
                 CarouselSlider(
+                  carouselController: _controller,
                   items: [
                     //1st Image of Slider
                     setSiderContainer(),
-
                     //2nd Image of Slider
                     setSiderContainer(),
-
                     //3rd Image of Slider
                     setSiderContainer(),
                   ],
@@ -59,14 +59,36 @@ class CarouselView {
                     enableInfiniteScroll: true,
                     aspectRatio: 16 / 9,
                     viewportFraction: 0.9,
+                    onPageChanged: onPageChange,
                   ),
-                ),
+                )
               ],
             ),
           ),
         ],
       ),
     );
+  }
+
+  Container setIndicatorView() {
+    List<Widget> lines = [];
+    for (int i = 0; i < 3; i++) {
+      if (i == _current) {
+        lines.add(dotSelContainer());
+      } else {
+        lines.add(dotUnSelContainer());
+      }
+    }
+    return Container(
+        margin: EdgeInsets.only(right: 20),
+        child:
+            Row(mainAxisAlignment: MainAxisAlignment.center, children: lines));
+  }
+
+  void onPageChange(int index, CarouselPageChangedReason changeReason) {
+    print(index);
+    _current = index;
+    this.carouselIndexCallback(index);
   }
 
   Container setSiderContainer() {
@@ -131,5 +153,23 @@ class CarouselView {
         ),
       ),
     );
+  }
+
+  Container dotUnSelContainer() {
+    return Container(
+        width: 8.0,
+        height: 8.0,
+        margin: EdgeInsets.only(right: 2),
+        child: Image.asset(
+          "assets/images/unsel_page.png",
+        ));
+  }
+
+  Container dotSelContainer() {
+    return Container(
+        width: 8.0,
+        height: 8.0,
+        margin: EdgeInsets.only(right: 2),
+        child: Image.asset("assets/images/sel_page.png"));
   }
 }
