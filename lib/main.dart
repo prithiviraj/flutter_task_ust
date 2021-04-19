@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/features/screen1/ui/Screen1.dart';
 import 'constant/Constants.dart';
+import 'features/splash/SplashScreen.dart';
+//import 'package:flutter/services.dart';
 
 void main() {
-  runApp(
-    MaterialApp(
+/*   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]); */
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
       debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
-      home: Screen1(),
-    ),
-  );
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: SplashScreen(),
+    );
+  }
 }

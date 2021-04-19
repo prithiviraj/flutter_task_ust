@@ -2,24 +2,31 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
+import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
+import 'package:flutter_app/utility/Utility.dart';
+import 'package:flutter_cubit/flutter_cubit.dart';
 import '../../../commonHelper/CarouselView.dart';
 import '../../screen2/ui/Screen2.dart';
 import '../../screen3/ui/Screen3.dart';
 
 class Screen1 extends StatefulWidget {
   @override
-  Screen1State createState() {
-    return Screen1State();
+  Screen1WidgetState createState() {
+    return Screen1WidgetState();
   }
 }
 
-class Screen1State extends State<Screen1> {
+class Screen1WidgetState extends State<Screen1> {
   CarouselView carouselView;
+  Screen1Cubit screen1Cubit;
 
   @override
   void initState() {
     super.initState();
     carouselView = CarouselView(this.carouselIndexCallback);
+
+    screen1Cubit = CubitProvider.of<Screen1Cubit>(context);
+    screen1Cubit.getTrendingMovies();
   }
 
   @override
@@ -40,22 +47,93 @@ class Screen1State extends State<Screen1> {
           color: HexColor.fromHex("#141D28"),
           height: double.infinity,
           width: double.infinity,
-          child: SingleChildScrollView(
-            child: Container(
-              margin: EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  view1(),
-                  carouselView.setCarouselView(),
-                  view3(context),
-                ],
-              ),
+          child: Container(
+            child: CubitConsumer<Screen1Cubit, Screen1State>(
+              cubit: screen1Cubit,
+              // ignore: missing_return
+              listenWhen: (previous, current) {
+                // return true/false to determine whether or not
+                // to invoke listener with state
+                print(
+                    "Call listenWhen(previous: $previous, current: $current)");
+              },
+              listener: (context, state) {
+                // do stuff here based on bloc state
+                print("State-listener->" + state.toString());
+              },
+              buildWhen: (previous, current) {
+                // return true/false to determine whether or not
+                // to rebuild the widget with state
+                print("Call buildWhen(previous: $previous, current: $current)");
+                if (current is Screen1LoadingState) {
+                  Utility().showLoaderDialog(context);
+                  return false;
+                } else {
+                  return true;
+                }
+              },
+              builder: (context, state) {
+                print("State-builder->" + state.toString());
+                if (state is Screen1InitialState) {
+                  return buildLoading(true);
+                } else if (state is Screen1LoadingState) {
+                  return buildLoading(true);
+                } else if (state is Screen1LoadedState) {
+                  return setAllView(context);
+                } else {
+                  return buildError();
+                }
+              },
             ),
           ),
         ),
       ),
     );
+  }
+
+  Widget setAllView(BuildContext context) {
+    return SingleChildScrollView(
+      child: Container(
+        margin: EdgeInsets.only(left: 20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            view1(),
+            carouselView.setCarouselView(),
+            view3(context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildLoading(bool status) {
+    return Visibility(
+      visible: status,
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  Widget buildError() {
+    return Visibility(
+        visible: true,
+        child: Container(
+          child: Align(
+            alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                "Something went wrong!",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ));
   }
 
   Column view1() {
