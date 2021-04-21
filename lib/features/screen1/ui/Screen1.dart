@@ -63,6 +63,7 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A Function to set all the widgets
   Widget setAllView(BuildContext context) {
     return SingleChildScrollView(
       child: Container(
@@ -83,9 +84,12 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A function set the middle view.
+  // When the Model Changed only middle view refresh, other no change.
   Widget setView2() {
     return Container(
       margin: EdgeInsets.only(left: leftAlign),
+      // Refresh only this widget based on state changed.
       child: CubitConsumer<Screen1Cubit, Screen1State>(
         cubit: screen1Cubit,
         // ignore: missing_return
@@ -135,14 +139,17 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A Function to set the loader widget
   Widget buildLoading(bool status) {
     return CustomLoadingWidget();
   }
 
+  // A function to set the error widget
   Widget buildError(String msg) {
     return CustomErrorWidget(msg: msg);
   }
 
+  // A Function to set the top view
   Widget setView1() {
     return Container(
       margin: EdgeInsets.only(left: leftAlign),
@@ -207,6 +214,7 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A function to set the bottom view.
   Widget setView3(BuildContext context) {
     return Container(
       margin: EdgeInsets.only(left: leftAlign),
@@ -242,6 +250,7 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A function to set the buttons in the bottom view.
   Column setButton(BuildContext context, String str, int i) {
     return Column(
       children: [
@@ -305,6 +314,7 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
+  // A function call when the carousel swiped.
   void carouselIndexCallback(int index) {
     screen1Cubit.emitLoadedState(model);
   }

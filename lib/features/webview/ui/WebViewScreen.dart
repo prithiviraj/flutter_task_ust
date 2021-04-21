@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
@@ -38,53 +37,73 @@ class WebViewScreenState extends State<WebViewScreen> {
         theme: ThemeData(),
         debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
         home: Scaffold(
-          appBar: PreferredSize(
-            preferredSize: Size(double.infinity, 56),
-            child: Visibility(
-              visible: false,
-              child: AppBar(),
+            appBar: PreferredSize(
+              preferredSize: Size(double.infinity, 56),
+              child: Visibility(
+                visible: false,
+                child: AppBar(),
+              ),
             ),
-          ),
-          body: Container(
-            color: HexColor.fromHex("#141D28"),
-            height: double.infinity,
-            width: double.infinity,
-            child: Container(
-                margin: EdgeInsets.only(top: 10),
-                child: buildWebView(context, link)),
-          ),
-        ));
+            body: Container(
+              color: HexColor.fromHex("#141D28"),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                      height: 50,
+                      margin: EdgeInsets.only(top: 10, left: 15),
+                      child: InkWell(
+                        onTap: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Container(
+                          width: 20,
+                          height: 20,
+                          child: Image.asset("assets/images/close.png",
+                              fit: BoxFit.fitWidth),
+                        ),
+                      )),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  buildWebView(context, link),
+                ],
+              ),
+            )));
   }
 
-  WebView buildWebView(BuildContext context, String link) {
+  // A function to load the webview
+  Widget buildWebView(BuildContext context, String link) {
     print("Link->" + link);
-    return WebView(
-      initialUrl: link,
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController webViewController) {
-        _controller.complete(webViewController);
-      },
-      onProgress: (int progress) {
-        print("WebView is loading (progress : $progress%)");
-      },
-      javascriptChannels: <JavascriptChannel>{
-        _toasterJavascriptChannel(context),
-      },
-      navigationDelegate: (NavigationRequest request) {
-        if (request.url.startsWith('https://www.youtube.com/')) {
-          print('blocking navigation to $request}');
-          return NavigationDecision.prevent;
-        }
-        print('allowing navigation to $request');
-        return NavigationDecision.navigate;
-      },
-      onPageStarted: (String url) {
-        print('Page started loading: $url');
-      },
-      onPageFinished: (String url) {
-        print('Page finished loading: $url');
-      },
-      gestureNavigationEnabled: true,
+    return Expanded(
+      child: WebView(
+        initialUrl: link,
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController webViewController) {
+          _controller.complete(webViewController);
+        },
+        onProgress: (int progress) {
+          print("WebView is loading (progress : $progress%)");
+        },
+        javascriptChannels: <JavascriptChannel>{
+          _toasterJavascriptChannel(context),
+        },
+        navigationDelegate: (NavigationRequest request) {
+          if (request.url.startsWith('https://www.youtube.com/')) {
+            print('blocking navigation to $request}');
+            return NavigationDecision.prevent;
+          }
+          print('allowing navigation to $request');
+          return NavigationDecision.navigate;
+        },
+        onPageStarted: (String url) {
+          print('Page started loading: $url');
+        },
+        onPageFinished: (String url) {
+          print('Page finished loading: $url');
+        },
+        gestureNavigationEnabled: true,
+      ),
     );
   }
 

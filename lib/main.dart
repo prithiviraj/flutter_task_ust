@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'constant/Constants.dart';
 import 'features/splash/SplashScreen.dart';
-//import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-/*   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]); */
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
   runApp(MyApp());
 }
 

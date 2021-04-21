@@ -1,5 +1,4 @@
 import 'package:cubit/cubit.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
 import 'package:flutter_app/features/screen1/data/screen1_repository.dart';
 import 'package:meta/meta.dart';
@@ -21,6 +20,7 @@ class Screen1Cubit extends Cubit<Screen1State> {
     //   _subject.close();
   }
 
+  // A function to make the api request and get the data.
   void getDataFromAPI() async {
     try {
       emit(Screen1LoadingState());
@@ -31,6 +31,7 @@ class Screen1Cubit extends Cubit<Screen1State> {
     }
   }
 
+  // A function to emit the loaded state
   void emitLoadedState(Screen1Model data) {
     emit(Screen1LoadedState(data));
   }

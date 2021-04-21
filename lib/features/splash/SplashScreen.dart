@@ -10,7 +10,6 @@ import 'package:flutter_cubit/flutter_cubit.dart';
 class SplashScreen extends StatefulWidget {
   @override
   SplashScreenPage createState() {
-    // ignore: dead_code
     return SplashScreenPage();
   }
 }
@@ -25,6 +24,7 @@ class SplashScreenPage extends State<SplashScreen> {
     Timer(Duration(seconds: 1), () => moveToScreen1());
   }
 
+  // A function to navigate to screen1
   void moveToScreen1() {
     Navigator.pushReplacement(
       context,

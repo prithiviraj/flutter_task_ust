@@ -15,6 +15,9 @@ class MockScreen3Repository implements Screen3Repository {
   @override
   Future<Screen3Model> getMockeData() async {
     try {
+      /*
+      This code is commented due to mock the data from local
+      */
 /*       final url =
           'https://api.themoviedb.org/3/trending/movie/week?api_key=060e7c76aff06a20ca4a875981216f3f';
       Map userMap =
@@ -28,6 +31,7 @@ class MockScreen3Repository implements Screen3Repository {
     }
   }
 
+  // A function to return the mock json data from the asset folder.
   returnMockData() async {
     return Future.delayed(
       Duration(seconds: 5),

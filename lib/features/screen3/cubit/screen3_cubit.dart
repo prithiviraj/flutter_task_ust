@@ -20,6 +20,7 @@ class Screen3Cubit extends Cubit<Screen3State> {
     //   _subject.close();
   }
 
+  // A function to call the api and get the data
   void getDataFromAPI() async {
     try {
       emit(Screen3LoadingState());

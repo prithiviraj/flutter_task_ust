@@ -35,10 +35,10 @@ class Screen2State extends State<Screen2> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 60),
-                  view(true, 3),
+                  setView(true, 3),
                   SizedBox(height: 20),
                   Divider(color: HexColor.fromHex("#7E7E7E26")),
-                  view(false, 5),
+                  setView(false, 5),
                   SizedBox(height: 20),
                 ],
               ),
@@ -49,7 +49,8 @@ class Screen2State extends State<Screen2> {
     );
   }
 
-  Widget view(bool status, int count) {
+  // A function to set the widget the main view
+  Widget setView(bool status, int count) {
     return Container(
       margin: EdgeInsets.only(left: 20),
       child: Column(
@@ -94,6 +95,7 @@ class Screen2State extends State<Screen2> {
     );
   }
 
+  // A function to set the list view
   Widget setListView(int count) {
     return Container(
       child: ListView.builder(
@@ -107,6 +109,7 @@ class Screen2State extends State<Screen2> {
     );
   }
 
+  // A function to bind the row in the list view.
   Widget getRow(int i) {
     int count = i + 1;
     return GestureDetector(

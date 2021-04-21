@@ -64,6 +64,7 @@ class Screen3StateWidget extends State<Screen3> {
     );
   }
 
+  // A function to set the top view
   Widget setView(bool status) {
     return Container(
       margin: EdgeInsets.only(left: 20),
@@ -95,6 +96,7 @@ class Screen3StateWidget extends State<Screen3> {
     );
   }
 
+  // A function to set the bottom view
   Widget bottomBtn() {
     return Container(
       child: Align(
@@ -126,6 +128,8 @@ class Screen3StateWidget extends State<Screen3> {
     );
   }
 
+  // A Function to set the list view
+  // When the Model Changed only middle view refresh, other no change.
   Widget setListView() {
     return Expanded(
       child: Container(
