@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
+import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
 
 class CarouselView {
   Function carouselIndexCallback;
@@ -9,29 +10,44 @@ class CarouselView {
 
   CarouselView(this.carouselIndexCallback);
 
-  Widget setCarouselView() {
+  Widget setCarouselPageIndicator(Screen1Model model) {
+    return Column(
+      children: [
+        SizedBox(height: 20),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: Text(
+                "Suspendisse vel.",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            setIndicatorView(model),
+          ],
+        ),
+        SizedBox(height: 60),
+      ],
+    );
+  }
+
+  List<Widget> setCarouselListView(Screen1Model model) {
+    List<Widget> lines = [];
+    for (int i = 0; i < model.resultList.length; i++) {
+      lines.add(setSiderContainer(model.resultList[i]));
+    }
+    return lines;
+  }
+
+  Widget setCarouselView(Screen1Model model) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: 20),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Container(
-                child: Text(
-                  "Suspendisse vel.",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 26.0,
-                      fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-              setIndicatorView(),
-            ],
-          ),
-          SizedBox(height: 60),
           Container(
             transform: Matrix4.translationValues(-20, 0.0, 0.0),
             child: ListView(
@@ -40,15 +56,7 @@ class CarouselView {
               children: [
                 CarouselSlider(
                   carouselController: _controller,
-                  items: [
-                    //1st Image of Slider
-                    setSiderContainer(),
-                    //2nd Image of Slider
-                    setSiderContainer(),
-                    //3rd Image of Slider
-                    setSiderContainer(),
-                  ],
-
+                  items: setCarouselListView(model),
                   //Slider Container properties
                   options: CarouselOptions(
                     height: 610,
@@ -70,9 +78,9 @@ class CarouselView {
     );
   }
 
-  Container setIndicatorView() {
+  Container setIndicatorView(Screen1Model model) {
     List<Widget> lines = [];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < model.resultList.length; i++) {
       if (i == _current) {
         lines.add(dotSelContainer());
       } else {
@@ -91,7 +99,7 @@ class CarouselView {
     this.carouselIndexCallback(index);
   }
 
-  Container setSiderContainer() {
+  Container setSiderContainer(Result data) {
     return Container(
       margin: EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
@@ -107,7 +115,7 @@ class CarouselView {
           children: [
             SizedBox(height: 10),
             Text(
-              "1",
+              data.title,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 48.0,
@@ -121,7 +129,7 @@ class CarouselView {
                     fit: BoxFit.fitWidth)),
             SizedBox(height: 30),
             Text(
-              "Lorem Ipsum",
+              data.text1,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 28.0,
@@ -132,7 +140,7 @@ class CarouselView {
             Container(
               margin: EdgeInsets.only(right: 20),
               child: Text(
-                "Dui mattis risus elit purus feugiat quis in sit.",
+                data.text2,
                 style: TextStyle(
                     color: HexColor.fromHex("#A0AEBB"),
                     fontSize: 18.0,
@@ -142,12 +150,12 @@ class CarouselView {
             ),
             SizedBox(height: 50),
             Text(
-              "Egestas scelerisque vel.",
+              data.text3,
               style: TextStyle(
                   color: HexColor.fromHex("#67B4E0"),
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal),
-              textAlign: TextAlign.center,
+              textAlign: TextAlign.start,
             )
           ],
         ),

@@ -8,15 +8,22 @@ import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
+  final String link;
+
+  WebViewScreen({Key key, @required this.link}) : super(key: key);
+
   @override
   WebViewScreenState createState() {
-    return WebViewScreenState();
+    return WebViewScreenState(link: link);
   }
 }
 
 class WebViewScreenState extends State<WebViewScreen> {
+  final String link;
   final Completer<WebViewController> _controller =
       Completer<WebViewController>();
+
+  WebViewScreenState({Key key, @required this.link});
 
   @override
   void initState() {
@@ -43,14 +50,16 @@ class WebViewScreenState extends State<WebViewScreen> {
             height: double.infinity,
             width: double.infinity,
             child: Container(
-                margin: EdgeInsets.only(top: 10), child: buildWebView(context)),
+                margin: EdgeInsets.only(top: 10),
+                child: buildWebView(context, link)),
           ),
         ));
   }
 
-  WebView buildWebView(BuildContext context) {
+  WebView buildWebView(BuildContext context, String link) {
+    print("Link->" + link);
     return WebView(
-      initialUrl: 'https://flutter.dev',
+      initialUrl: link,
       javascriptMode: JavascriptMode.unrestricted,
       onWebViewCreated: (WebViewController webViewController) {
         _controller.complete(webViewController);

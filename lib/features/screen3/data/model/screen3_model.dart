@@ -1,9 +1,9 @@
-class Screen1Model {
+class Screen3Model {
   List<Result> resultList;
 
-  Screen1Model({this.resultList});
+  Screen3Model({this.resultList});
 
-  Screen1Model.fromJson(Map<String, dynamic> json) {
+  Screen3Model.fromJson(Map<String, dynamic> json) {
     if (json['results'] != null) {
       resultList = <Result>[];
       json['results'].forEach((v) {

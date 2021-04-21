@@ -1,0 +1,36 @@
+{
+    "results": [
+        {
+            "text1": "https://www.youtube.com/",
+            "title": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. "
+        },
+        {
+            "text1": "https://www.linkedin.com/",
+            "title": "Same UI and Business Logic in All Platforms"
+        },
+        {
+            "text1": "https://www.facebook.com/",
+            "title": "The Potential Ability to Go Beyond Mobile Is Flutter a Good Solution From the Business Perspective?"
+        },
+        {
+            "text1": "https://stackoverflow.com/",
+            "title": "Increased Time-to-Market Speed"
+        },
+        {
+            "text1": "http://www.flutter.com/",
+            "title": "Custom, Animated UI of Any Complexity Available"
+        },
+        {
+            "text1": "https://medium.com/",
+            "title": "Similar to Native App Performance"
+        },
+        {
+            "text1": "https://www.google.com/",
+            "title": "Own Rendering Engine"
+        },
+        {
+            "text1": "https://www.android.com/",
+            "title": "Reduced Code Development Time"
+        }
+    ]
+}

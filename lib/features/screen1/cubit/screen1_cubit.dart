@@ -21,13 +21,17 @@ class Screen1Cubit extends Cubit<Screen1State> {
     //   _subject.close();
   }
 
-  void getTrendingMovies() async {
+  void getDataFromAPI() async {
     try {
       emit(Screen1LoadingState());
-      final movies = await repository.getMockeData();
-      emit(Screen1LoadedState(movies));
+      final data = await repository.getMockeData();
+      emitLoadedState(data);
     } catch (e) {
       emit(Screen1ErrorState());
     }
+  }
+
+  void emitLoadedState(Screen1Model data) {
+    emit(Screen1LoadedState(data));
   }
 }

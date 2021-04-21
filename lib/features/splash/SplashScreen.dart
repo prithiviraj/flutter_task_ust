@@ -1,6 +1,6 @@
 import 'dart:async';
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/commonHelper/ApiClient.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/screen1_repository.dart';
@@ -32,7 +32,7 @@ class SplashScreenPage extends State<SplashScreen> {
         builder: (context) {
           return CubitProvider(
             create: (BuildContext context) =>
-                Screen1Cubit(MockScreen1Repository(Dio())),
+                Screen1Cubit(MockScreen1Repository(ApiProviderImp())),
             child: Screen1(),
           );
         },

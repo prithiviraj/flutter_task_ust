@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/commonHelper/ApiClient.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
+import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
+import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
+import 'package:flutter_app/features/screen3/data/screen3_repository.dart';
 import 'package:flutter_app/utility/Utility.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
 import '../../../commonHelper/CarouselView.dart';
@@ -19,6 +23,7 @@ class Screen1 extends StatefulWidget {
 class Screen1WidgetState extends State<Screen1> {
   CarouselView carouselView;
   Screen1Cubit screen1Cubit;
+  Screen1Model model;
 
   @override
   void initState() {
@@ -26,7 +31,7 @@ class Screen1WidgetState extends State<Screen1> {
     carouselView = CarouselView(this.carouselIndexCallback);
 
     screen1Cubit = CubitProvider.of<Screen1Cubit>(context);
-    screen1Cubit.getTrendingMovies();
+    screen1Cubit.getDataFromAPI();
   }
 
   @override
@@ -79,7 +84,12 @@ class Screen1WidgetState extends State<Screen1> {
                 } else if (state is Screen1LoadingState) {
                   return buildLoading(true);
                 } else if (state is Screen1LoadedState) {
-                  return setAllView(context);
+                  if (state.model != null) {
+                    model = state.model;
+                    return setAllView(context, model);
+                  } else {
+                    return buildError();
+                  }
                 } else {
                   return buildError();
                 }
@@ -91,7 +101,7 @@ class Screen1WidgetState extends State<Screen1> {
     );
   }
 
-  Widget setAllView(BuildContext context) {
+  Widget setAllView(BuildContext context, Screen1Model model) {
     return SingleChildScrollView(
       child: Container(
         margin: EdgeInsets.only(left: 20),
@@ -99,7 +109,8 @@ class Screen1WidgetState extends State<Screen1> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             view1(),
-            carouselView.setCarouselView(),
+            carouselView.setCarouselPageIndicator(model),
+            carouselView.setCarouselView(model),
             view3(context),
           ],
         ),
@@ -265,10 +276,17 @@ class Screen1WidgetState extends State<Screen1> {
                     ));
               } else if (i == 2) {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Screen3(),
-                    ));
+                  context,
+                  MaterialPageRoute<Screen1Cubit>(
+                    builder: (context) {
+                      return CubitProvider(
+                        create: (BuildContext context) => Screen3Cubit(
+                            MockScreen3Repository(ApiProviderImp())),
+                        child: Screen3(),
+                      );
+                    },
+                  ),
+                );
               }
             },
             textColor: Colors.white,
@@ -287,8 +305,6 @@ class Screen1WidgetState extends State<Screen1> {
   }
 
   void carouselIndexCallback(int index) {
-    setState(() {
-      carouselView.setCarouselView();
-    });
+    screen1Cubit.emitLoadedState(model);
   }
 }

@@ -2,16 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
+import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
+import 'package:flutter_app/features/screen3/data/model/screen3_model.dart';
 import 'package:flutter_app/features/webview/ui/WebViewScreen.dart';
+import 'package:flutter_app/utility/Utility.dart';
+import 'package:flutter_cubit/flutter_cubit.dart';
 
 class Screen3 extends StatefulWidget {
   @override
-  Screen3State createState() {
-    return Screen3State();
+  Screen3StateWidget createState() {
+    return Screen3StateWidget();
   }
 }
 
-class Screen3State extends State<Screen3> {
+class Screen3StateWidget extends State<Screen3> {
+  Screen3Cubit screen3Cubit;
+  Screen3Model model;
+
+  @override
+  void initState() {
+    super.initState();
+    screen3Cubit = CubitProvider.of<Screen3Cubit>(context);
+    screen3Cubit.getDataFromAPI();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,7 +51,7 @@ class Screen3State extends State<Screen3> {
             children: [
               SizedBox(height: 60),
               setView(true),
-              setListView(6),
+              setListView(),
               SizedBox(height: 20),
               bottomBtn(),
               SizedBox(height: 20),
@@ -110,28 +124,72 @@ class Screen3State extends State<Screen3> {
     );
   }
 
-  Widget setListView(int count) {
+  Widget setListView() {
     return Expanded(
       child: Container(
         margin: EdgeInsets.only(left: 20),
-        child: ListView.builder(
-            padding: const EdgeInsets.all(0.0),
-            shrinkWrap: true,
-            itemCount: count,
-            itemBuilder: (BuildContext ctx, int position) {
-              return getRow(position);
-            }),
+        child: CubitConsumer<Screen3Cubit, Screen3State>(
+          cubit: screen3Cubit,
+          // ignore: missing_return
+          listenWhen: (previous, current) {
+            // return true/false to determine whether or not
+            // to invoke listener with state
+            print("Call listenWhen(previous: $previous, current: $current)");
+          },
+          listener: (context, state) {
+            // do stuff here based on bloc state
+            print("State-listener->" + state.toString());
+          },
+          buildWhen: (previous, current) {
+            // return true/false to determine whether or not
+            // to rebuild the widget with state
+            print("Call buildWhen(previous: $previous, current: $current)");
+            if (current is Screen3LoadingState) {
+              Utility().showLoaderDialog(context);
+              return false;
+            } else {
+              return true;
+            }
+          },
+          builder: (context, state) {
+            print("State-builder->" + state.toString());
+            if (state is Screen3InitialState) {
+              return buildLoading(true);
+            } else if (state is Screen3LoadingState) {
+              return buildLoading(true);
+            } else if (state is Screen3LoadedState) {
+              if (state.model != null) {
+                model = state.model;
+                return setListViewData(model);
+              } else {
+                return buildError();
+              }
+            } else {
+              return buildError();
+            }
+          },
+        ),
       ),
     );
   }
 
-  Widget getRow(int i) {
+  ListView setListViewData(Screen3Model model) {
+    return ListView.builder(
+        padding: const EdgeInsets.all(0.0),
+        shrinkWrap: true,
+        itemCount: model.resultList.length,
+        itemBuilder: (BuildContext ctx, int position) {
+          return getRow(model.resultList[position]);
+        });
+  }
+
+  Widget getRow(Result data) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WebViewScreen(),
+              builder: (context) => WebViewScreen(link: ""),
             ));
       },
       child: Column(
@@ -155,7 +213,7 @@ class Screen3State extends State<Screen3> {
                   children: [
                     Flexible(
                       child: Text(
-                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ",
+                        data.title,
                         style: TextStyle(
                             color: Colors.white,
                             fontSize: 16.0,
@@ -177,5 +235,34 @@ class Screen3State extends State<Screen3> {
         ],
       ),
     );
+  }
+
+  Widget buildLoading(bool status) {
+    return Visibility(
+      visible: status,
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
+
+  Widget buildError() {
+    return Visibility(
+        visible: true,
+        child: Container(
+          child: Align(
+            alignment: Alignment.center,
+            child: Center(
+              child: Text(
+                "Something went wrong!",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 26.0,
+                    fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ),
+        ));
   }
 }

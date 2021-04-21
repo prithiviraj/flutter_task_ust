@@ -1,0 +1,32 @@
+{
+    "results": [
+        {
+            "image": "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+            "text1": "Lorem Ipsum",
+            "text2": "Dui mattis risus elit purus feugiat quis in sit.",
+            "text3": "Egestas scelerisque vel.",
+            "title": "1"
+        },
+        {
+            "image": "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+            "text1": "Flutter Advantages 2",
+            "text2": "Same UI and Business Logic in All Platforms.",
+            "text3": "Reduced Code Development Time.",
+            "title": "2"
+        },
+        {
+            "image": "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+            "text1": "Flutter Advantages 3",
+            "text2": "Increased Time-to-Market Speed.",
+            "text3": "Own Rendering Engine.",
+            "title": "3"
+        },
+        {
+            "image": "/pgqgaUx1cJb5oZQQ5v0tNARCeBp.jpg",
+            "text1": "Flutter Advantages 4",
+            "text2": "Similar to Native App Performance.",
+            "text3": "Simple Platform-Specific Logic Implementation.",
+            "title": "4"
+        }
+    ]
+}
