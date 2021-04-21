@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/commonHelper/ApiClient.dart';
+import 'package:flutter_app/apiClient/ApiClient.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/screen1_repository.dart';
@@ -22,7 +22,7 @@ class SplashScreenPage extends State<SplashScreen> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       print("---WidgetsBinding---");
     });
-    Timer(Duration(seconds: 3), () => moveToScreen1());
+    Timer(Duration(seconds: 1), () => moveToScreen1());
   }
 
   void moveToScreen1() {

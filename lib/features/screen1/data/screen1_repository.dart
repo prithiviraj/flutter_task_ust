@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/commonHelper/ApiClient.dart';
+import 'package:flutter_app/apiClient/ApiClient.dart';
 import 'model/screen1_model.dart';
 
 abstract class Screen1Repository {
@@ -30,7 +30,7 @@ class MockScreen1Repository implements Screen1Repository {
 
   returnMockData() async {
     return Future.delayed(
-      Duration(seconds: 5),
+      Duration(seconds: 10),
       () async {
         String str = await loadMockDataFromAsset();
         final json1 = jsonDecode(str);

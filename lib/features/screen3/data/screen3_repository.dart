@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/services.dart';
-import 'package:flutter_app/commonHelper/ApiClient.dart';
+import 'package:flutter_app/apiClient/ApiClient.dart';
 import 'model/screen3_model.dart';
 
 abstract class Screen3Repository {

@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/common_widgets/error_widget.dart';
+import 'package:flutter_app/common_widgets/loading_widget.dart';
 import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
@@ -162,10 +164,10 @@ class Screen3StateWidget extends State<Screen3> {
                 model = state.model;
                 return setListViewData(model);
               } else {
-                return buildError();
+                return buildError("Something went wrong!");
               }
             } else {
-              return buildError();
+              return buildError("Something went wrong!");
             }
           },
         ),
@@ -189,7 +191,7 @@ class Screen3StateWidget extends State<Screen3> {
         Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => WebViewScreen(link: ""),
+              builder: (context) => WebViewScreen(link: data.text1),
             ));
       },
       child: Column(
@@ -238,31 +240,10 @@ class Screen3StateWidget extends State<Screen3> {
   }
 
   Widget buildLoading(bool status) {
-    return Visibility(
-      visible: status,
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
+    return CustomLoadingWidget();
   }
 
-  Widget buildError() {
-    return Visibility(
-        visible: true,
-        child: Container(
-          child: Align(
-            alignment: Alignment.center,
-            child: Center(
-              child: Text(
-                "Something went wrong!",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 26.0,
-                    fontWeight: FontWeight.bold),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ));
+  Widget buildError(String msg) {
+    return CustomErrorWidget(msg: msg);
   }
 }
