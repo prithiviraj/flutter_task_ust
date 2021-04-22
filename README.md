@@ -117,3 +117,13 @@ feature/
 | - module/
     |- data
     |- repository.dart
+
+Standard Version:
+
+Droid:
+
+minSdkVersion 16
+
+iOS:
+
+MinimumOSVersion 8.0
