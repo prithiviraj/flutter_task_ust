@@ -18,11 +18,15 @@ class ApiProviderImp implements ApiClient {
   Future<Map> request(Map body, String url, String method) async {
     String reqUrl = url;
     log("URL->" + reqUrl);
-    Response response = await createClient(method).request(
-      url,
-      queryParameters: body,
-    );
-    return handleResponse(response);
+    try {
+      final Response response = await createClient(method).request(
+        url,
+        queryParameters: body,
+      );
+      return handleResponse(response);
+    } catch (e) {
+      throw e;
+    }
   }
 
   Map handleResponse(Response response) {
@@ -36,6 +40,7 @@ class ApiProviderImp implements ApiClient {
   }
 
   Dio createClient(String method) {
+    // returning dio instance
     Dio dio = new Dio(BaseOptions(
       contentType: Headers.jsonContentType,
       responseType: ResponseType.json,

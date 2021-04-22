@@ -6,8 +6,8 @@ import 'package:flutter_app/constant/Constants.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
 import 'package:flutter_app/features/screen3/data/model/screen3_model.dart';
-import 'package:flutter_app/features/webview/ui/WebViewScreen.dart';
-import 'package:flutter_app/utility/Utility.dart';
+import 'package:flutter_app/features/webview/ui/webview_widget.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
 
 class Screen3 extends StatefulWidget {
@@ -151,7 +151,7 @@ class Screen3StateWidget extends State<Screen3> {
             // to rebuild the widget with state
             print("Call buildWhen(previous: $previous, current: $current)");
             if (current is Screen3LoadingState) {
-              Utility().showLoaderDialog(context);
+              Utils().showLoaderDialog(context);
               return false;
             } else {
               return true;

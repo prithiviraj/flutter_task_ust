@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class Utility {
-  Utility._privateConstructor();
+class Utils {
+  Utils._privateConstructor();
 
-  static final Utility getInstance = Utility._privateConstructor();
+  static final Utils getInstance = Utils._privateConstructor();
 
-  factory Utility() {
+  factory Utils() {
     return getInstance;
   }
 

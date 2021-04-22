@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/apiClient/ApiClient.dart';
-import 'package:flutter_app/common_widgets/CarouselView.dart';
+import 'package:flutter_app/apiClient/rest_client.dart';
+import 'package:flutter_app/common_widgets/carousel_widget.dart';
 import 'package:flutter_app/common_widgets/error_widget.dart';
 import 'package:flutter_app/common_widgets/loading_widget.dart';
 import 'package:flutter_app/constant/Constants.dart';
@@ -10,10 +10,10 @@ import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
 import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
 import 'package:flutter_app/features/screen3/data/screen3_repository.dart';
-import 'package:flutter_app/utility/Utility.dart';
+import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
-import '../../screen2/ui/Screen2.dart';
-import '../../screen3/ui/Screen3.dart';
+import '../../screen2/ui/screen2_widget.dart';
+import '../../screen3/ui/screen2_widget.dart';
 
 class Screen1 extends StatefulWidget {
   @override
@@ -107,7 +107,7 @@ class Screen1WidgetState extends State<Screen1> {
           // to rebuild the widget with state
           print("Call buildWhen(previous: $previous, current: $current)");
           if (current is Screen1LoadingState) {
-            Utility().showLoaderDialog(context);
+            Utils().showLoaderDialog(context);
             return false;
           } else {
             return true;

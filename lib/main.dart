@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'constant/Constants.dart';
-import 'features/splash/SplashScreen.dart';
+import 'features/splash/splash_widget.dart';
 import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-  runApp(MyApp());
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+  ]).then((_) {
+    runApp(MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {

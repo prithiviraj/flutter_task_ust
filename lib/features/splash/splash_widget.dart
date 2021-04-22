@@ -1,10 +1,10 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/apiClient/ApiClient.dart';
+import 'package:flutter_app/apiClient/rest_client.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/screen1_repository.dart';
-import 'package:flutter_app/features/screen1/ui/Screen1.dart';
+import 'package:flutter_app/features/screen1/ui/screen1_widget.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
