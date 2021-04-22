@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
 
@@ -19,7 +20,7 @@ class CarouselView {
           children: [
             Container(
               child: Text(
-                "Suspendisse vel.",
+                Strings.screen1_text6,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 26.0,
@@ -104,10 +105,10 @@ class CarouselView {
       margin: EdgeInsets.only(right: 20),
       decoration: BoxDecoration(
           border: Border.all(
-            color: HexColor.fromHex("#71747B"),
+            color: HexColor.fromHex(Strings.carouselColor1),
           ),
           borderRadius: BorderRadius.all(Radius.circular(4)),
-          color: HexColor.fromHex("#242d36")),
+          color: HexColor.fromHex(Strings.borderColor2)),
       child: Padding(
         padding: const EdgeInsets.only(right: 0, left: 25, top: 5, bottom: 10),
         child: Column(
@@ -125,8 +126,8 @@ class CarouselView {
             SizedBox(height: 10),
             Container(
                 width: double.infinity,
-                child: Image.asset("assets/images/image.png",
-                    fit: BoxFit.fitWidth)),
+                child:
+                    Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth)),
             SizedBox(height: 30),
             Text(
               data.text1,
@@ -142,7 +143,7 @@ class CarouselView {
               child: Text(
                 data.text2,
                 style: TextStyle(
-                    color: HexColor.fromHex("#A0AEBB"),
+                    color: HexColor.fromHex(Strings.textColor),
                     fontSize: 18.0,
                     fontWeight: FontWeight.normal),
                 textAlign: TextAlign.start,
@@ -152,7 +153,7 @@ class CarouselView {
             Text(
               data.text3,
               style: TextStyle(
-                  color: HexColor.fromHex("#67B4E0"),
+                  color: HexColor.fromHex(Strings.textColor1),
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal),
               textAlign: TextAlign.start,
@@ -169,7 +170,7 @@ class CarouselView {
         height: 8.0,
         margin: EdgeInsets.only(right: 2),
         child: Image.asset(
-          "assets/images/unsel_page.png",
+          Strings.unsel_pageIcon,
         ));
   }
 
@@ -178,6 +179,6 @@ class CarouselView {
         width: 8.0,
         height: 8.0,
         margin: EdgeInsets.only(right: 2),
-        child: Image.asset("assets/images/sel_page.png"));
+        child: Image.asset(Strings.sel_pageIcon));
   }
 }

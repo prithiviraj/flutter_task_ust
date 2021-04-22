@@ -5,6 +5,7 @@ import 'package:flutter_app/common_widgets/carousel_widget.dart';
 import 'package:flutter_app/common_widgets/error_widget.dart';
 import 'package:flutter_app/common_widgets/loading_widget.dart';
 import 'package:flutter_app/constant/Constants.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/model/screen1_model.dart';
@@ -13,7 +14,7 @@ import 'package:flutter_app/features/screen3/data/screen3_repository.dart';
 import 'package:flutter_app/utils/utils.dart';
 import 'package:flutter_cubit/flutter_cubit.dart';
 import '../../screen2/ui/screen2_widget.dart';
-import '../../screen3/ui/screen2_widget.dart';
+import '../../screen3/ui/screen3_widget.dart';
 
 class Screen1 extends StatefulWidget {
   @override
@@ -40,7 +41,6 @@ class Screen1WidgetState extends State<Screen1> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Screen1",
       theme: ThemeData(),
       debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
       home: Scaffold(
@@ -52,7 +52,7 @@ class Screen1WidgetState extends State<Screen1> {
           ),
         ),
         body: Container(
-          color: HexColor.fromHex("#141D28"),
+          color: HexColor.fromHex(Strings.bgColor),
           height: double.infinity,
           width: double.infinity,
           child: Container(
@@ -71,11 +71,11 @@ class Screen1WidgetState extends State<Screen1> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             setView1(),
-            Divider(color: HexColor.fromHex("#7E7E7E26")),
+            Divider(color: HexColor.fromHex(Strings.dividerColor)),
             SizedBox(height: 10),
             setView2(),
             SizedBox(height: 40),
-            Divider(color: HexColor.fromHex("#7E7E7E26")),
+            Divider(color: HexColor.fromHex(Strings.dividerColor)),
             SizedBox(height: 20),
             setView3(context),
           ],
@@ -129,10 +129,10 @@ class Screen1WidgetState extends State<Screen1> {
                 ],
               );
             } else {
-              return buildError("Carousel loading error!");
+              return buildError(Strings.carouselError);
             }
           } else {
-            return buildError("Carousel loading error!");
+            return buildError(Strings.carouselError);
           }
         },
       ),
@@ -159,7 +159,7 @@ class Screen1WidgetState extends State<Screen1> {
           SizedBox(height: 80),
           Container(
             child: Text(
-              "Frames volutpat.",
+              Strings.screen1_text1,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 26.0,
@@ -176,9 +176,9 @@ class Screen1WidgetState extends State<Screen1> {
                 children: [
                   Container(
                     child: Text(
-                      "Name.",
+                      Strings.screen1_text2,
                       style: TextStyle(
-                          color: HexColor.fromHex("#A0AEBB"),
+                          color: HexColor.fromHex(Strings.textColor),
                           fontSize: 18.0,
                           fontWeight: FontWeight.normal),
                     ),
@@ -186,7 +186,7 @@ class Screen1WidgetState extends State<Screen1> {
                   SizedBox(height: 10),
                   Container(
                     child: Text(
-                      "Euismod.",
+                      Strings.screen1_text3,
                       style: TextStyle(
                           color: Colors.white,
                           fontSize: 20.0,
@@ -199,8 +199,7 @@ class Screen1WidgetState extends State<Screen1> {
                   width: 20,
                   height: 20,
                   margin: EdgeInsets.only(right: 20),
-                  child: Image.asset("assets/images/edit.png",
-                      fit: BoxFit.fitWidth)),
+                  child: Image.asset(Strings.editIcon, fit: BoxFit.fitWidth)),
             ],
           ),
           Container(
@@ -208,7 +207,7 @@ class Screen1WidgetState extends State<Screen1> {
               height: 390,
               margin: EdgeInsets.only(right: 20),
               child:
-                  Image.asset("assets/images/image.png", fit: BoxFit.fitWidth)),
+                  Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth)),
         ],
       ),
     );
@@ -223,7 +222,7 @@ class Screen1WidgetState extends State<Screen1> {
         children: [
           Container(
             child: Text(
-              "Sollicitudin in tortor.",
+              Strings.screen1_text4,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 26.0,
@@ -235,16 +234,16 @@ class Screen1WidgetState extends State<Screen1> {
           Container(
             margin: EdgeInsets.only(right: 10),
             child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Platea sollicitudin platea habitant senectus. Placerat.",
+              Strings.screen1_text5,
               style: TextStyle(
-                  color: HexColor.fromHex("#A0AEBB"),
+                  color: HexColor.fromHex(Strings.textColor),
                   fontSize: 18.0,
                   fontWeight: FontWeight.normal),
             ),
           ),
           SizedBox(height: 20),
-          setButton(context, "Egestas scleri", 1),
-          setButton(context, "Consectur", 2),
+          setButton(context, Strings.screen1_btn1, 1),
+          setButton(context, Strings.screen1_btn2, 2),
         ],
       ),
     );
@@ -272,8 +271,8 @@ class Screen1WidgetState extends State<Screen1> {
                 Container(
                   width: 30,
                   height: 30,
-                  child: Image.asset("assets/images/arrow_right.png",
-                      fit: BoxFit.fitWidth),
+                  child:
+                      Image.asset(Strings.rightArrowIcon, fit: BoxFit.fitWidth),
                 )
               ],
             ),
@@ -304,7 +303,7 @@ class Screen1WidgetState extends State<Screen1> {
                 borderSide: BorderSide(
                   style: BorderStyle.solid,
                   width: 1.0,
-                  color: HexColor.fromHex("#7E7E7E"),
+                  color: HexColor.fromHex(Strings.borderColor),
                 ),
                 borderRadius: new BorderRadius.circular(4.0)),
           ),

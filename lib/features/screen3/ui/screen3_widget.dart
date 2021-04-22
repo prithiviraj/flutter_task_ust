@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/common_widgets/error_widget.dart';
 import 'package:flutter_app/common_widgets/loading_widget.dart';
 import 'package:flutter_app/constant/Constants.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen3/cubit/screen3_cubit.dart';
 import 'package:flutter_app/features/screen3/data/model/screen3_model.dart';
@@ -31,7 +32,6 @@ class Screen3StateWidget extends State<Screen3> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Screen3",
       theme: ThemeData(),
       debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
       home: Scaffold(
@@ -43,7 +43,7 @@ class Screen3StateWidget extends State<Screen3> {
           ),
         ),
         body: Container(
-          color: HexColor.fromHex("#141D28"),
+          color: HexColor.fromHex(Strings.bgColor),
           height: double.infinity,
           width: double.infinity,
           child: Column(
@@ -73,7 +73,7 @@ class Screen3StateWidget extends State<Screen3> {
         children: [
           Container(
             child: Text(
-              "Fringilla vulputate.",
+              Strings.screen3_text1,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 26.0,
@@ -83,7 +83,7 @@ class Screen3StateWidget extends State<Screen3> {
           ),
           SizedBox(height: 20),
           Text(
-            "Massa risus.",
+            Strings.screen3_text2,
             style: TextStyle(
                 color: Colors.white,
                 fontSize: 16.0,
@@ -107,7 +107,7 @@ class Screen3StateWidget extends State<Screen3> {
           margin: EdgeInsets.only(left: 20, right: 20),
           child: FlatButton(
             child: Text(
-              "Lorem Ipsum",
+              Strings.screen3_btn1,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 18.0,
@@ -119,7 +119,7 @@ class Screen3StateWidget extends State<Screen3> {
                 borderSide: BorderSide(
                   style: BorderStyle.solid,
                   width: 1.0,
-                  color: HexColor.fromHex("#0076CE"),
+                  color: HexColor.fromHex(Strings.borderColor1),
                 ),
                 borderRadius: new BorderRadius.circular(4.0)),
           ),
@@ -168,10 +168,10 @@ class Screen3StateWidget extends State<Screen3> {
                 model = state.model;
                 return setListViewData(model);
               } else {
-                return buildError("Something went wrong!");
+                return buildError(Strings.errorLocalMsg);
               }
             } else {
-              return buildError("Something went wrong!");
+              return buildError(Strings.errorLocalMsg);
             }
           },
         ),
@@ -210,7 +210,7 @@ class Screen3StateWidget extends State<Screen3> {
                     color: Colors.transparent,
                   ),
                   borderRadius: BorderRadius.all(Radius.circular(4)),
-                  color: HexColor.fromHex("#242d36")),
+                  color: HexColor.fromHex(Strings.borderColor2)),
               child: Padding(
                 padding: const EdgeInsets.only(
                     left: 15, right: 10, top: 18, bottom: 18),
@@ -230,7 +230,7 @@ class Screen3StateWidget extends State<Screen3> {
                     Container(
                       width: 20,
                       height: 20,
-                      child: Image.asset("assets/images/arrow_right.png",
+                      child: Image.asset(Strings.rightArrowIcon,
                           fit: BoxFit.fitWidth),
                     )
                   ],

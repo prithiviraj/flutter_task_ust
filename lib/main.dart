@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constant/Constants.dart';
+import 'constant/Strings.dart';
 import 'features/splash/splash_widget.dart';
 import 'package:flutter/services.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
+      title: Strings.appName,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

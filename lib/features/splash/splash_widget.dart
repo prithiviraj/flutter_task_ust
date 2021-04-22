@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/apiClient/rest_client.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:flutter_app/features/screen1/cubit/screen1_cubit.dart';
 import 'package:flutter_app/features/screen1/data/screen1_repository.dart';
@@ -19,7 +20,7 @@ class SplashScreenPage extends State<SplashScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      print("---WidgetsBinding---");
+      print("<---WidgetsBinding--->");
     });
     Timer(Duration(seconds: 1), () => moveToScreen1());
   }
@@ -42,11 +43,8 @@ class SplashScreenPage extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: dead_code
-    print("---build---");
-    //return Image.asset("assets/images/my_icon.png");
     return Container(
-        color: HexColor.fromHex("#141D28"),
+        color: HexColor.fromHex(Strings.bgColor),
         height: double.infinity,
         width: double.infinity,
         child: Center(

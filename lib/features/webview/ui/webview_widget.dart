@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
@@ -33,7 +34,6 @@ class WebViewScreenState extends State<WebViewScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: "WebViewScreen",
         theme: ThemeData(),
         debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
         home: Scaffold(
@@ -45,7 +45,7 @@ class WebViewScreenState extends State<WebViewScreen> {
               ),
             ),
             body: Container(
-              color: HexColor.fromHex("#141D28"),
+              color: HexColor.fromHex(Strings.bgColor),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -59,7 +59,7 @@ class WebViewScreenState extends State<WebViewScreen> {
                         child: Container(
                           width: 20,
                           height: 20,
-                          child: Image.asset("assets/images/close.png",
+                          child: Image.asset(Strings.closeCrossIcon,
                               fit: BoxFit.fitWidth),
                         ),
                       )),

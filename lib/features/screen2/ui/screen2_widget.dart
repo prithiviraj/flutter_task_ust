@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Constants.dart';
+import 'package:flutter_app/constant/Strings.dart';
 import 'package:flutter_app/extensions/Colors+Extension.dart';
 
 class Screen2 extends StatefulWidget {
@@ -14,7 +15,6 @@ class Screen2State extends State<Screen2> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Screen2",
       theme: ThemeData(),
       debugShowCheckedModeBanner: Constants.isDebugShowCheckedModeBanner,
       home: Scaffold(
@@ -26,7 +26,7 @@ class Screen2State extends State<Screen2> {
           ),
         ),
         body: Container(
-          color: HexColor.fromHex("#141D28"),
+          color: HexColor.fromHex(Strings.bgColor),
           height: double.infinity,
           width: double.infinity,
           child: SingleChildScrollView(
@@ -37,7 +37,7 @@ class Screen2State extends State<Screen2> {
                   SizedBox(height: 60),
                   setView(true, 3),
                   SizedBox(height: 20),
-                  Divider(color: HexColor.fromHex("#7E7E7E26")),
+                  Divider(color: HexColor.fromHex(Strings.dividerColor)),
                   setView(false, 5),
                   SizedBox(height: 20),
                 ],
@@ -60,7 +60,7 @@ class Screen2State extends State<Screen2> {
             visible: status,
             child: Container(
               child: Text(
-                "Pellentesque nulla enim sed.",
+                Strings.screen2_text1,
                 style: TextStyle(
                     color: Colors.white,
                     fontSize: 26.0,
@@ -73,7 +73,7 @@ class Screen2State extends State<Screen2> {
           Visibility(
             visible: status,
             child: Text(
-              "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis praesent lorem egestas tellus orci leo.",
+              Strings.screen2_text2,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -87,7 +87,7 @@ class Screen2State extends State<Screen2> {
               height: 220,
               margin: EdgeInsets.only(right: 20),
               child:
-                  Image.asset("assets/images/image.png", fit: BoxFit.fitWidth)),
+                  Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth)),
           SizedBox(height: 30),
           Container(child: setListView(count)),
         ],
@@ -129,7 +129,7 @@ class Screen2State extends State<Screen2> {
                   textAlign: TextAlign.start,
                 ),
                 Text(
-                  "Mus sed at ligula.",
+                  Strings.screen2_text3,
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 16.0,

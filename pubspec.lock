@@ -51,7 +51,7 @@ packages:
     source: hosted
     version: "1.15.0"
   cubit:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: cubit
       url: "https://pub.dartlang.org"
@@ -71,13 +71,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.0.10"
-  equatable:
-    dependency: "direct main"
-    description:
-      name: equatable
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.6"
   fake_async:
     dependency: transitive
     description:

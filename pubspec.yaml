@@ -31,9 +31,9 @@ dependencies:
   carousel_slider: ^2.3.1
   webview_flutter: ^2.0.4
  # flutter_bloc: ^6.1.1
-  cubit: ^0.1.0
+#  cubit: ^0.1.0
+#  equatable: ^1.2.5
   flutter_cubit: ^0.1.0
-  equatable: ^1.2.5
   dio: ^3.0.10
 
 dev_dependencies:
