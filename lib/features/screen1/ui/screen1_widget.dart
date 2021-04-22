@@ -193,6 +193,7 @@ class Screen1WidgetState extends State<Screen1> {
                           fontWeight: FontWeight.w600),
                     ),
                   ),
+                  SizedBox(height: 20),
                 ],
               ),
               Container(
@@ -204,10 +205,10 @@ class Screen1WidgetState extends State<Screen1> {
           ),
           Container(
               width: double.infinity,
-              height: 390,
+              height: 340,
               margin: EdgeInsets.only(right: 20),
-              child:
-                  Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth)),
+              child: Image.asset(Strings.placeHolderIcon, fit: BoxFit.cover)),
+          SizedBox(height: 10),
         ],
       ),
     );
