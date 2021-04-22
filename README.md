@@ -31,12 +31,12 @@ or watch command in order to keep the source code synced automatically.
 
 Assessment Features:
 
-Splash
-Widgets
-Dio
-Cubit (State Management) with MVVM
-cached_network_image
-Json Serialization
+Splash, 
+Widgets, 
+Dio, 
+Cubit (State Management) with MVVM, 
+cached_network_image, 
+Json Serialization and 
 Folder Structure
 
 Here is the core folder structure which flutter provides.
