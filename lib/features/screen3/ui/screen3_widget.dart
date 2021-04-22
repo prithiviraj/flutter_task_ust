@@ -102,10 +102,20 @@ class Screen3StateWidget extends State<Screen3> {
       child: Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: 45,
+          height: 50,
           width: double.infinity,
           margin: EdgeInsets.only(left: 20, right: 20),
-          child: FlatButton(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: HexColor.fromHex(Strings.bgColor),
+                onPrimary: Colors.white,
+                side: BorderSide(
+                  width: 1.2,
+                  color: HexColor.fromHex(Strings.borderColor1),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(3.5),
+                )),
             child: Text(
               Strings.screen3_btn1,
               style: TextStyle(
@@ -114,14 +124,6 @@ class Screen3StateWidget extends State<Screen3> {
                   fontWeight: FontWeight.normal),
             ),
             onPressed: () {},
-            textColor: Colors.white,
-            shape: OutlineInputBorder(
-                borderSide: BorderSide(
-                  style: BorderStyle.solid,
-                  width: 1.0,
-                  color: HexColor.fromHex(Strings.borderColor1),
-                ),
-                borderRadius: new BorderRadius.circular(4.0)),
           ),
         ),
       ),

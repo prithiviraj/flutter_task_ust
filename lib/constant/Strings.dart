@@ -19,7 +19,7 @@ class Strings {
   static const String dividerColor = "#7E7E7E26";
   static const String textColor = "#A0AEBB";
   static const String textColor1 = "#67B4E0";
-  static const String borderColor = "#7E7E7E";
+  static const String borderColor = "#B27E7E7E";
   static const String borderColor1 = "0076CE";
   static const String borderColor2 = "242d36";
   static const String carouselColor1 = "71747B";

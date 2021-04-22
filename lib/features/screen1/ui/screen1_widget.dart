@@ -255,9 +255,19 @@ class Screen1WidgetState extends State<Screen1> {
       children: [
         Container(
           width: double.infinity,
-          height: 45,
+          height: 50,
           margin: EdgeInsets.only(right: 20),
-          child: FlatButton(
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+                primary: HexColor.fromHex(Strings.bgColor),
+                onPrimary: Colors.white,
+                side: BorderSide(
+                  width: 0.9,
+                  color: HexColor.fromHex(Strings.borderColor),
+                ),
+                shape: RoundedRectangleBorder(
+                  borderRadius: new BorderRadius.circular(2.5),
+                )),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -298,14 +308,6 @@ class Screen1WidgetState extends State<Screen1> {
                 );
               }
             },
-            textColor: Colors.white,
-            shape: OutlineInputBorder(
-                borderSide: BorderSide(
-                  style: BorderStyle.solid,
-                  width: 1.0,
-                  color: HexColor.fromHex(Strings.borderColor),
-                ),
-                borderRadius: new BorderRadius.circular(4.0)),
           ),
         ),
         SizedBox(height: 20)
