@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constant/Strings.dart';
@@ -125,9 +126,17 @@ class CarouselView {
             ),
             SizedBox(height: 10),
             Container(
-                width: double.infinity,
-                child:
-                    Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth)),
+              width: double.infinity,
+              height: 290,
+              child: CachedNetworkImage(
+                fit: BoxFit.cover,
+                imageUrl: data.image,
+                placeholder: (context, url) =>
+                    Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth),
+                errorWidget: (context, url, error) =>
+                    Image.asset(Strings.placeHolderIcon, fit: BoxFit.fitWidth),
+              ),
+            ),
             SizedBox(height: 30),
             Text(
               data.text1,
